@@ -1,12 +1,18 @@
 # Coronial Recommendation Taxonomy
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20353531.svg)](https://doi.org/10.5281/zenodo.20353531)
+[![License: MIT](https://img.shields.io/badge/Code-MIT-blue.svg)](LICENSE)
+[![License: CC BY 4.0](https://img.shields.io/badge/Docs%20%2F%20Data-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+
 Code, codebook, and analytic outputs for:
 
 **A multi-axis taxonomy of Australian coronial recommendations: distributions, jurisdictional variation, and structural configurations, 1998–2026**
 
 Hayden Farquhar, MBBS MPHTM. Independent researcher, Finley, New South Wales, Australia. ORCID: 0009-0002-6226-440X.
 
-Pre-registration: [https://doi.org/10.17605/OSF.IO/NEX85](https://doi.org/10.17605/OSF.IO/NEX85) (Open Science Framework, CC-BY 4.0, binding analysis plan).
+- **Pre-registration:** [https://doi.org/10.17605/OSF.IO/NEX85](https://doi.org/10.17605/OSF.IO/NEX85) (Open Science Framework, CC-BY 4.0, binding analysis plan)
+- **Archived snapshot (all versions):** [https://doi.org/10.5281/zenodo.20353531](https://doi.org/10.5281/zenodo.20353531) (Zenodo, concept DOI — always resolves to the latest release)
+- **This version (v1.0.0):** [https://doi.org/10.5281/zenodo.20353532](https://doi.org/10.5281/zenodo.20353532)
 
 ## Overview
 
@@ -134,13 +140,22 @@ The frozen v2.5 codebook (the analytic instrument) is at `codebook/codebook_v2.5
 
 ## Citation
 
-If you use this code, please cite the accompanying paper (citation to be added when the preprint is posted) and the OSF pre-registration:
+If you use this code, please cite the Zenodo archive (preferred — using the concept DOI ensures the citation always resolves to the latest release):
+
+```
+Farquhar H. Coronial Recommendation Taxonomy. Zenodo, 2026.
+https://doi.org/10.5281/zenodo.20353531
+```
+
+And the OSF pre-registration:
 
 ```
 Farquhar H. Pre-registration: A multi-axis taxonomy of Australian coronial
 recommendations. Open Science Framework, 2026.
 https://doi.org/10.17605/OSF.IO/NEX85
 ```
+
+The accompanying manuscript will be added to this list when posted as a preprint.
 
 ## License
 
