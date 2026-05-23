@@ -1,0 +1,9 @@
+addressee,implemented,already_implemented,partially_accepted,under_consideration,noted,not_supported
+ADDR-DEPT-NAMED,63,5,19,48,30,9
+ADDR-DEPT-GENERIC,8,0,2,3,1,2
+ADDR-HEALTH,23,3,9,23,3,3
+ADDR-REG,3,0,3,1,0,0
+ADDR-PROF,9,0,4,8,9,0
+ADDR-POLICE,34,1,7,24,5,4
+ADDR-COURT,0,0,0,1,0,1
+ADDR-PRIVATE,16,1,6,8,4,0

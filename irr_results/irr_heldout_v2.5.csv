@@ -1,0 +1,6 @@
+sample,comparison,axis,n_total,n_clean,krippendorff_alpha,pct_agreement,modal_share,verdict
+heldout_seed878,Opus_vs_Sonnet,theme,50,40,0.709,0.75,0.275,Tentative
+heldout_seed878,Opus_vs_Sonnet,mechanism,50,40,0.376,0.75,0.762,Unreliable
+heldout_seed878,Opus_vs_Sonnet,addressee,50,40,0.841,0.875,0.35,Reliable
+heldout_seed878,Opus_vs_Sonnet,specificity,50,40,0.844,0.925,0.613,Reliable
+heldout_seed878,Opus_vs_Sonnet,scope,50,40,1.0,1.0,0.9,Reliable

@@ -1,0 +1,115 @@
+{
+  "generated_on": "2026-05-23",
+  "seed": 878,
+  "n_target": 50,
+  "n_actual": 50,
+  "filters": {
+    "recommendation_count_range": [
+      1,
+      25
+    ],
+    "text_chars_range": [
+      200,
+      12000
+    ],
+    "no_recommendations_dropped": 676
+  },
+  "allocation_method": "square-root proportional by jurisdiction \u00d7 year-bin",
+  "distribution": [
+    {
+      "jurisdiction": "ACT",
+      "year_bin": "2010-2019",
+      "n_sampled": 1
+    },
+    {
+      "jurisdiction": "ACT",
+      "year_bin": "2020plus",
+      "n_sampled": 1
+    },
+    {
+      "jurisdiction": "NSW",
+      "year_bin": "2010-2019",
+      "n_sampled": 3
+    },
+    {
+      "jurisdiction": "NSW",
+      "year_bin": "2020plus",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "NT",
+      "year_bin": "2010-2019",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "NT",
+      "year_bin": "2020plus",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "NT",
+      "year_bin": "pre2010",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "QLD",
+      "year_bin": "2010-2019",
+      "n_sampled": 4
+    },
+    {
+      "jurisdiction": "QLD",
+      "year_bin": "2020plus",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "QLD",
+      "year_bin": "pre2010",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "SA",
+      "year_bin": "2010-2019",
+      "n_sampled": 3
+    },
+    {
+      "jurisdiction": "SA",
+      "year_bin": "2020plus",
+      "n_sampled": 1
+    },
+    {
+      "jurisdiction": "SA",
+      "year_bin": "pre2010",
+      "n_sampled": 3
+    },
+    {
+      "jurisdiction": "TAS",
+      "year_bin": "2010-2019",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "TAS",
+      "year_bin": "2020plus",
+      "n_sampled": 3
+    },
+    {
+      "jurisdiction": "VIC",
+      "year_bin": "2010-2019",
+      "n_sampled": 8
+    },
+    {
+      "jurisdiction": "VIC",
+      "year_bin": "2020plus",
+      "n_sampled": 5
+    },
+    {
+      "jurisdiction": "WA",
+      "year_bin": "2010-2019",
+      "n_sampled": 2
+    },
+    {
+      "jurisdiction": "WA",
+      "year_bin": "2020plus",
+      "n_sampled": 2
+    }
+  ]
+}

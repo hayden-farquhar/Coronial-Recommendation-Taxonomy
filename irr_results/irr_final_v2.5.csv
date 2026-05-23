@@ -1,0 +1,11 @@
+sample,axis,n_total,n_clean,krippendorff_alpha,pct_agreement,modal_share,verdict
+v2.3,theme,50,43,0.894,0.907,0.244,Reliable
+v2.3,mechanism,50,43,0.901,0.953,0.698,Reliable
+v2.3,addressee,50,43,0.823,0.86,0.395,Reliable
+v2.3,specificity,50,43,0.782,0.907,0.698,Tentative
+v2.3,scope,50,43,0.0,0.977,0.988,Skew-Reliable
+v2.2,theme,50,40,0.82,0.85,0.338,Reliable
+v2.2,mechanism,50,40,0.854,0.95,0.8,Reliable
+v2.2,addressee,50,40,0.808,0.85,0.4,Reliable
+v2.2,specificity,50,40,0.901,0.95,0.525,Reliable
+v2.2,scope,50,40,,1.0,1.0,unavailable

@@ -1,0 +1,36 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Local secrets — never commit
+.env
+.env.local
+*.key
+
+# Large or re-generable intermediate outputs (uncomment as needed)
+# batches/
+
+# OSF / portfolio metadata files that should never enter a public repo
+.osf_*
+.integrity_overrides
