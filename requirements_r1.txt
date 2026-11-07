@@ -1,0 +1,13 @@
+# Package versions for the revised analyses (v1.1.0: scripts run with --r1, and 10_r1_practice_comparison.py)
+# The IRR analyses (scripts 03, 05) were run earlier under requirements.txt (krippendorff 0.6.1).
+pandas==2.3.3
+numpy==2.5.4
+scipy==1.18.1
+statsmodels==0.15.0
+matplotlib==3.11.2
+seaborn==0.13.2
+SciencePlots==2.2.2
+pyarrow==26.0.0
+python-docx==1.2.0
+krippendorff==0.6.1
+# Python 3.14

@@ -6,19 +6,19 @@
 
 Code, codebook, and analytic outputs for:
 
-**A multi-axis taxonomy of Australian coronial recommendations: distributions, jurisdictional variation, and structural configurations, 1998–2026**
+**Specificity, not subject matter, is what varies most across Australian coronial systems: a multi-axis taxonomy of recommendations, 1998–2026**
 
 Hayden Farquhar, MBBS MPHTM. Independent researcher, Finley, New South Wales, Australia. ORCID: 0009-0002-6226-440X.
 
 - **Pre-registration:** [https://doi.org/10.17605/OSF.IO/NEX85](https://doi.org/10.17605/OSF.IO/NEX85) (Open Science Framework, CC-BY 4.0, binding analysis plan)
 - **Archived snapshot (all versions):** [https://doi.org/10.5281/zenodo.20353531](https://doi.org/10.5281/zenodo.20353531) (Zenodo, concept DOI — always resolves to the latest release)
-- **This version (v1.0.0):** [https://doi.org/10.5281/zenodo.20353532](https://doi.org/10.5281/zenodo.20353532)
+- **Versions:** v1.1.0 adds the revised analyses (see below); v1.0.0 is [https://doi.org/10.5281/zenodo.20353532](https://doi.org/10.5281/zenodo.20353532)
 
 ## Overview
 
-This repository contains the analysis code, frozen codebook, pre-registered analysis outputs, and inter-rater reliability artefacts for a corpus-level study of Australian coronial recommendations (1998–2026). The study applies a five-axis taxonomy (theme, mechanism, addressee, specificity, scope) to n = 2,702 case-level recommendation extracts and reports descriptive distributions, jurisdictional variation, and structural configurations.
+This repository contains the analysis code, frozen codebook, pre-registered analysis outputs, and inter-rater reliability artefacts for a corpus-level study of Australian coronial recommendations (1998–2026). The study applies a five-axis taxonomy (theme, mechanism, addressee, specificity, scope) to the case-level recommendation extracts (2,702 rows in the deposited file; 2,700 after removing two duplicated Victorian findings in the revised analyses) and reports descriptive distributions, jurisdictional variation, and structural configurations.
 
-This repository **does not** contain the accompanying manuscript itself, nor any submission-preparation artefacts. The manuscript, when posted as a preprint, will reference this repository for code and outputs.
+This repository **does not** contain the accompanying manuscript itself, nor any manuscript-preparation code.
 
 ## Data Sources
 
@@ -60,6 +60,24 @@ python scripts/07_shape_b_analyses_FG.py
 ```
 
 Expected outputs: 28 figures in `outputs/figures/` and 31 tables in `outputs/tables/`.
+
+### Path A2 — Revised analyses (v1.1.0): manuscript Tables 2–3, Figures 1–3 and supplementary S5
+
+The revised manuscript uses a de-duplicated corpus (n = 2,700), the rebuilt upstream response linkage (a documented response is a linked agency response; the response outcome is the per-finding majority of a validated model classifier), and a comparison of each jurisdiction's response practice. These analyses run from files deposited here, with no external inputs:
+
+```bash
+python scripts/06_shape_b_analyses_ABCDE.py --r1   # sections A-E on the de-duplicated corpus
+python scripts/07_shape_b_analyses_FG.py --r1      # sections F-G with the rebuilt response linkage
+python scripts/10_r1_practice_comparison.py        # coverage by jurisdiction and publication route,
+                                                   # collection-window coverage, correlations,
+                                                   # permutation checks, manuscript Figures 1-3
+```
+
+Outputs go to `outputs/figures/r1/` and `outputs/tables/r1/`; the v1.0.0 outputs in `outputs/figures/` and `outputs/tables/` are unchanged. Package versions used are pinned in `requirements_r1.txt` (Python 3.14). Shared data rules (corpus de-duplication, response definition, catchall rule) are in `scripts/r1_data.py`.
+
+Two derived input files support these analyses. `data/r1_response_linkage.csv` holds, for each classified case, the upstream linkage's `has_response` flag and per-finding `finding_classification` (no text). `data/response_coverage_window.csv` is the upstream table of the first and last year in which a published agency response appears in each jurisdiction's AustLII response collection; collection-window coverage counts recommendations made from the first year to the earlier of the last year or 2023. To use a full upstream linkage file instead, set `UPSTREAM_LINKED_V2_CSV=/path/to/findings_responses_linked.csv`.
+
+v1.1.0 also corrects two input paths in the original scripts (06 now reads the deposited `.no_text.parquet`; 07 reads the IRR tables from `irr_results/`).
 
 ### Path B — Re-run the corpus classification (requires Anthropic API access)
 
@@ -110,6 +128,8 @@ Note that LLM outputs are not deterministic across model versions or temperature
 | `07_shape_b_analyses_FG.py` | Pre-registered analyses F–G (compliance descriptive joining upstream response data; methodological appendix) | Classified parquet + `$UPSTREAM_LINKED_CSV` | `outputs/figures/F_*.png, G_*.png`, `outputs/tables/F_*.csv, G_*.csv` |
 | `08_classify_corpus_template.py` | TEMPLATE for re-running the classification under the frozen v2.5 codebook via Anthropic API | `classification_target` parquet (with text), codebook, `$ANTHROPIC_API_KEY` | batch parquets |
 | `09_classify_heldout.py` | Audit-trail record of the Sonnet 4.6 held-out classification (frozen output as Python tuples) | Held-out IRR sample | `irr_results/ratings_heldout_sonnet_seed878.csv` |
+| `r1_data.py` | Shared data rules for the revised analyses (de-duplication, response definition, catchall rule) | Classified parquet, `data/r1_response_linkage.csv` | (imported) |
+| `10_r1_practice_comparison.py` | Coverage by jurisdiction, publication route and collection window; specificity-coverage correlations; permutation checks of the section F tests; manuscript Figures 1–3 | Classified parquet, `data/r1_response_linkage.csv`, `data/response_coverage_window.csv`, `outputs/tables/r1/shape_b/F_*.csv` | `outputs/tables/r1/*.csv`, `outputs/figures/r1/manuscript/Figure{1,2,3}_*` |
 
 ## Outputs
 
@@ -129,6 +149,18 @@ Note that LLM outputs are not deterministic across model versions or temperature
 | `outputs/figures/A_*.png` … `G_*.png` | Supplementary figures |
 | `irr_results/irr_heldout_v2.5.csv` | Table 1 |
 | `irr_results/irr_final_v2.5.csv` | Supplementary IRR table |
+
+### Revised analyses (v1.1.0)
+
+| File | Manuscript reference |
+|------|----------------|
+| `outputs/tables/r1/shape_b/B_chi2_axis_by_jurisdiction.csv` | Table 2 |
+| `outputs/tables/r1/practice_by_jurisdiction.csv` | Table 3 (specificity and coverage columns), Figures 1–3 |
+| `outputs/tables/r1/coverage_window_by_jurisdiction.csv` | Table 3 (collection-window coverage); supplementary Table F8 |
+| `outputs/tables/r1/practice_values.csv` | Every coverage, route, Queensland and correlation value reported in the text |
+| `outputs/tables/r1/compliance_permutation.csv` | §3.5 permutation check; supplementary Table F7 |
+| `outputs/tables/r1/shape_b/*.csv`, `outputs/figures/r1/shape_b/*.png` | Supplementary material S5, S7, S8 |
+| `outputs/figures/r1/manuscript/Figure{1,2,3}_*.{pdf,png}` | Figures 1–3 |
 
 ## Codebook
 
@@ -155,7 +187,7 @@ recommendations. Open Science Framework, 2026.
 https://doi.org/10.17605/OSF.IO/NEX85
 ```
 
-The accompanying manuscript will be added to this list when posted as a preprint.
+
 
 ## License
 

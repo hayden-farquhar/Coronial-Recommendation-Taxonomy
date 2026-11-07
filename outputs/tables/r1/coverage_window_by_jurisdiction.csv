@@ -1,0 +1,8 @@
+jurisdiction,collection_years,n_window,with_response_window,coverage_window_pct,ci95_wilson,n_all_years,with_response_all_years,coverage_all_years_pct
+NSW,2008-2023,141,73,51.8,43.6 to 59.9,178,88,49.4
+VIC,2009-2021,976,508,52.0,48.9 to 55.2,1215,508,41.8
+QLD,2008-2023,201,81,40.3,33.8 to 47.2,230,82,35.7
+WA,2013-2023,106,67,63.2,53.7 to 71.8,127,76,59.8
+SA,2005-2023,203,50,24.6,19.2 to 31.0,297,52,17.5
+TAS,2015-2023,163,23,14.1,9.6 to 20.3,221,28,12.7
+NT,2019-2023,27,12,44.4,27.6 to 62.7,151,20,13.2

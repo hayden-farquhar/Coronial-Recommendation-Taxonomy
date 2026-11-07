@@ -1,0 +1,5 @@
+axis,n,chi2,dof,p,cramers_v,note
+mechanism,832,123.01289713676566,20,7.869787775238144e-17,0.19225766553498155,shape 5x6 after dropping all-zero rows/cols
+addressee,800,90.28143788851958,35,8.976167880077759e-07,0.15023434850968634,shape 8x6 after dropping all-zero rows/cols
+specificity,845,4.591219945502781,5,0.4677720581321262,0.07371157565274529,shape 2x6 after dropping all-zero rows/cols
+scope,845,5.16036712710762,5,0.39662410719946095,0.0781469343332769,shape 2x6 after dropping all-zero rows/cols

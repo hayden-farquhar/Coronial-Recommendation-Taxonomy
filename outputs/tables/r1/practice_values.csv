@@ -1,0 +1,18 @@
+key,k,n,pct,stat,p,note
+n_classified,2700.0,2700,100.0,,,de-duplicated corpus
+spec2_corpus,1121.0,2700,41.5,,,Figure 1 reference line
+coverage_observable7,854.0,2419,35.3,,,
+coverage_route_online,754.0,1750,43.1,,,"VIC, NSW, QLD, WA"
+coverage_route_parliament_or_none,100.0,669,14.9,,,"SA, NT, TAS"
+coverage_qld_pre2013,10.0,95,10.5,,,
+coverage_qld_2013on,72.0,135,53.3,,,
+coverage_window_observable7,814.0,1817,44.8,,,
+coverage_window_route_online,729.0,1424,51.2,,,"VIC, NSW, QLD, WA"
+coverage_window_route_parliament_or_none,85.0,393,21.6,,,"SA, NT, TAS"
+coverage_window_qld_pre2013,10.0,78,12.8,,,
+coverage_window_qld_2013on,71.0,123,57.7,,,
+spearman_rho_7,,7,,0.536,0.215,"post-hoc, 7 observable"
+pearson_r_7,,7,,0.429,0.337,"post-hoc, 7 observable"
+spearman_rho_8_act_as_zero,,8,,0.69,0.058,"ACT as zero, as in the original analysis"
+spearman_rho_window_7,,7,,0.821,0.023,"post-hoc, collection windows, 7 observable"
+pearson_r_window_7,,7,,0.751,0.052,"post-hoc, collection windows, 7 observable"

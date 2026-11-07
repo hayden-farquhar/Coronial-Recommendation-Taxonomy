@@ -1,0 +1,6 @@
+mechanism,implemented,already_implemented,partially_accepted,under_consideration,noted,not_supported
+MECH-LEG,23,3,15,15,3,14
+MECH-INFRA,27,4,19,6,0,5
+MECH-FUND,20,4,6,13,2,1
+MECH-INV,61,4,9,4,1,4
+MECH-PROC,389,43,83,30,3,21

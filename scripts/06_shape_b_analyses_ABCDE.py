@@ -22,10 +22,17 @@ import seaborn as sns
 from scipy.stats import chi2_contingency
 from statsmodels.stats.multitest import multipletests
 import collections
+import sys
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-FIG_DIR = PROJECT_ROOT / 'outputs' / 'figures' / 'shape_b'
-TAB_DIR = PROJECT_ROOT / 'outputs' / 'tables' / 'shape_b'
+import r1_data
+
+# --r1: de-duplicated corpus, outputs to outputs/{figures,tables}/r1/shape_b (v1.0.0 outputs untouched)
+R1 = '--r1' in sys.argv
+PROJECT_ROOT = r1_data.PROJECT_ROOT
+FIG_DIR = (r1_data.R1_FIG_DIR if R1 else PROJECT_ROOT / 'outputs' / 'figures') / 'shape_b'
+TAB_DIR = (r1_data.R1_TAB_DIR if R1 else PROJECT_ROOT / 'outputs' / 'tables') / 'shape_b'
+FIG_DIR.mkdir(parents=True, exist_ok=True)
+TAB_DIR.mkdir(parents=True, exist_ok=True)
 
 AXES = ['theme', 'mechanism', 'addressee', 'specificity', 'scope']
 CANONICAL_ORDER = {
@@ -52,7 +59,10 @@ def cramers_v(chi2, n, contingency_shape):
 
 
 def main():
-    df = pd.read_parquet(PROJECT_ROOT / 'data' / 'au' / 'recommendations_v2.5_classified.parquet')
+    if R1:
+        df = r1_data.load_classified()
+    else:
+        df = pd.read_parquet(PROJECT_ROOT / 'data' / 'recommendations_v2.5_classified.no_text.parquet')
     df['year_bin'] = df['year'].apply(year_bin)
     print(f'Loaded {len(df):,} classified rows')
     print(f'Year bins: {df["year_bin"].value_counts().to_dict()}')
@@ -125,7 +135,7 @@ def main():
         ax.set_title(f'{axis.title()} composition by year-bin (% within year-bin)')
         ax.set_xlabel(axis.title())
         ax.set_ylabel('% within year-bin')
-        ax.legend(title='Year bin', loc='upper right')
+        ax.legend(title='Year bin', loc='upper left', bbox_to_anchor=(1.01, 1.0))  # outside, clear of the bars
         plt.setp(ax.get_xticklabels(), rotation=45, ha='right')
         plt.tight_layout()
         plt.savefig(FIG_DIR / f'C_{axis}_by_year_bin.png', dpi=150)

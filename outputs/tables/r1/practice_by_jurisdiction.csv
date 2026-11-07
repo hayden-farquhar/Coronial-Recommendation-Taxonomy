@@ -1,0 +1,9 @@
+jurisdiction,route,observable,n_classified,spec2_k,spec2_pct,n_noncatchall,coverage_k,coverage_pct,window,n_window,coverage_window_k,coverage_window_pct,coverage_window_ci_lo,coverage_window_ci_hi
+NSW,online,True,202,44,21.8,178,88.0,49.4,2008-2023,141.0,73.0,51.8,43.6,59.9
+VIC,online,True,1230,680,55.3,1215,508.0,41.8,2009-2021,976.0,508.0,52.0,48.9,55.2
+QLD,online,True,333,95,28.5,230,82.0,35.7,2008-2023,201.0,81.0,40.3,33.8,47.2
+WA,online,True,127,92,72.4,127,76.0,59.8,2013-2023,106.0,67.0,63.2,53.7,71.8
+SA,parliament,True,356,69,19.4,297,52.0,17.5,2005-2023,203.0,50.0,24.6,19.2,31.0
+TAS,none,True,274,46,16.8,221,28.0,12.7,2015-2023,163.0,23.0,14.1,9.6,20.3
+NT,parliament,True,160,94,58.8,151,20.0,13.2,2019-2023,27.0,12.0,44.4,27.6,62.7
+ACT,parliament,False,18,1,5.6,18,,,,,,,,

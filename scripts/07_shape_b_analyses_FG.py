@@ -11,10 +11,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import chi2_contingency
+import sys
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-FIG_DIR = PROJECT_ROOT / 'outputs' / 'figures' / 'shape_b'
-TAB_DIR = PROJECT_ROOT / 'outputs' / 'tables' / 'shape_b'
+import r1_data
+
+# --r1: de-duplicated corpus, upstream v2 linkage (agency-response definition, majority-rule
+# compliance code), outputs to outputs/{figures,tables}/r1/shape_b (v1.0.0 outputs untouched)
+R1 = '--r1' in sys.argv
+PROJECT_ROOT = r1_data.PROJECT_ROOT
+FIG_DIR = (r1_data.R1_FIG_DIR if R1 else PROJECT_ROOT / 'outputs' / 'figures') / 'shape_b'
+TAB_DIR = (r1_data.R1_TAB_DIR if R1 else PROJECT_ROOT / 'outputs' / 'tables') / 'shape_b'
+FIG_DIR.mkdir(parents=True, exist_ok=True)
+TAB_DIR.mkdir(parents=True, exist_ok=True)
 UPSTREAM_LINKED = Path(__import__('os').environ.get('UPSTREAM_LINKED_CSV', PROJECT_ROOT / 'data' / 'findings_responses_linked.csv'))
 
 CANONICAL_ORDER = {
@@ -29,14 +37,19 @@ COMPLIANCE_ORDER = ['implemented', 'already_implemented', 'partially_accepted', 
 
 
 def main():
-    df = pd.read_parquet(PROJECT_ROOT / 'data' / 'au' / 'recommendations_v2.5_classified.parquet')
-    upstream_linked = pd.read_csv(UPSTREAM_LINKED)
-    print(f'Classified corpus: {len(df):,} rows')
-    print(f'the upstream pipeline linked:     {len(upstream_linked):,} rows')
+    if R1:
+        df = r1_data.load_classified()
+        upstream_unique = r1_data.load_upstream_linked().rename(columns={r1_data.COMPLIANCE_COL: 'dominant_classification'})
+        print(f'Upstream linked (v2, unique case_id): {len(upstream_unique):,} rows')
+    else:
+        df = pd.read_parquet(PROJECT_ROOT / 'data' / 'recommendations_v2.5_classified.no_text.parquet')
+        upstream = pd.read_csv(UPSTREAM_LINKED)
+        print(f'Classified corpus: {len(df):,} rows')
+        print(f'Upstream linked:     {len(upstream):,} rows')
 
-    # Join on case_id, keep only one the upstream pipeline row per case (the upstream pipeline has 10,018 rows incl. cases with no recommendations)
-    p10_unique = upstream_linked.drop_duplicates(subset='case_id', keep='first')[['case_id', 'has_response', 'dominant_classification']]
-    merged = df.merge(p10_unique, on='case_id', how='left')
+        # Join on case_id, keep only one upstream row per case (the upstream pipeline has 10,018 rows incl. cases with no recommendations)
+        upstream_unique = upstream.drop_duplicates(subset='case_id', keep='first')[['case_id', 'has_response', 'dominant_classification']]
+    merged = df.merge(upstream_unique, on='case_id', how='left')
     print(f'After join: {len(merged):,} rows (expected = classified row count, no row inflation)')
 
     # Exclude catchall rows
@@ -45,7 +58,7 @@ def main():
                      (merged['scope']=='SCOPE-IND'))
     non_catchall = merged[~catchall_mask].copy()
     print(f'Non-catchall: {len(non_catchall):,}')
-    print(f'  with the upstream pipeline response data: {(non_catchall["has_response"]==True).sum()}')
+    print(f'  with upstream response data: {(non_catchall["has_response"]==True).sum()}')
     print(f'  unclassifiable (VIC cover-page stubs etc.): {(non_catchall["dominant_classification"]=="unclassifiable").sum()}')
 
     # Substantive compliance analysis uses only rows with a non-unclassifiable response
@@ -132,8 +145,9 @@ def main():
     # --- Section G: Methodological appendix
     print('\n=== Section G: Methodological appendix ===')
     # G1: Held-out IRR table (already at outputs/tables/irr_heldout_v2.5.csv)
-    irr_heldout = pd.read_csv(PROJECT_ROOT / 'outputs' / 'tables' / 'irr_heldout_v2.5.csv')
-    irr_dev = pd.read_csv(PROJECT_ROOT / 'outputs' / 'tables' / 'irr_final_v2.5.csv')
+    irr_dir = PROJECT_ROOT / 'irr_results'  # repository location of the IRR outputs
+    irr_heldout = pd.read_csv(irr_dir / 'irr_heldout_v2.5.csv')
+    irr_dev = pd.read_csv(irr_dir / 'irr_final_v2.5.csv')
     # Combined IRR summary table
     combined = pd.concat([
         irr_dev.assign(provenance='development_sample'),
